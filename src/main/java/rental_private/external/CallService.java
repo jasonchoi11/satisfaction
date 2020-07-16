@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Date;
 
-@FeignClient(name="Call", url="http://Call:8080")
+@FeignClient(name="Call", url="http://admin19-sk-call:8080")
 public interface CallService {
 
     @RequestMapping(method= RequestMethod.POST, path="/calls")
