@@ -20,13 +20,10 @@ public class Satisfaction {
     @PrePersist
     public void onPrePersist(){
 
-      /*  try {
-            Thread.currentThread().sleep((long) (400 + Math.random() * 220));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
+
         Call call = new Call();
         call.setId(getId());
+        call.setRequestYn("Y");
         SatisfactionApplication.applicationContext.getBean(CallService.class)
             .callSurvey(call);
 
