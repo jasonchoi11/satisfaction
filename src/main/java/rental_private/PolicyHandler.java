@@ -26,7 +26,7 @@ public class PolicyHandler{
             satisfaction.setCheckId(checked.getId());
             satisfaction.setScore(checked.getScore());
             satisfactionRepository.save(satisfaction);
-            System.out.println("##### listener SatisfactionSurvey : " + checked.toJson());
+            System.out.println("##### listener SatisfactionSurvey  : " + checked.toJson());
         }
     }
 
