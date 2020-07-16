@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PolicyHandler{
+    @Autowired
+    SatisfactionRepository satisfactionRepository;
+
     @StreamListener(KafkaProcessor.INPUT)
     public void onStringEventListener(@Payload String eventString){
 
@@ -19,6 +22,10 @@ public class PolicyHandler{
     public void wheneverChecked_SatisfactionSurvey(@Payload Checked checked){
 
         if(checked.isMe()){
+            Satisfaction satisfaction = new Satisfaction();
+            satisfaction.setCheckId(checked.getId());
+            satisfaction.setScore(checked.getScore());
+            satisfactionRepository.save(satisfaction);
             System.out.println("##### listener SatisfactionSurvey : " + checked.toJson());
         }
     }
