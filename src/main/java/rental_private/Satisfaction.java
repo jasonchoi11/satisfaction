@@ -2,6 +2,9 @@ package rental_private;
 
 import javax.persistence.*;
 import org.springframework.beans.BeanUtils;
+import rental_private.external.Call;
+import rental_private.external.CallService;
+
 import java.util.List;
 
 @Entity
@@ -22,6 +25,10 @@ public class Satisfaction {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }*/
+        Call call = new Call();
+        call.setId(getId());
+        SatisfactionApplication.applicationContext.getBean(CallService.class)
+            .callSurvey(call);
 
         SatisfactionSurveyed satisfactionSurveyed = new SatisfactionSurveyed();
         BeanUtils.copyProperties(this, satisfactionSurveyed);
